@@ -31,8 +31,10 @@ class LineItemsController < ApplicationController
    product = Product.find(params[:product_id])
    @line_item = @cart.add_product(product.id)
     @line_item.user_id = current_user.id
+   
    respond_to do |format|
       if @line_item.save
+        #current_user.line_items.where(:pay_type => 'NULL').update_all (:pay_type => @order.pay_type)
         format.html { redirect_to store_url }
 
         format.js { @current_item = @line_item }
@@ -49,6 +51,7 @@ class LineItemsController < ApplicationController
   # PATCH/PUT /line_items/1
   # PATCH/PUT /line_items/1.json
   def update
+
     respond_to do |format|
       if @line_item.update(line_item_params)
         format.html { redirect_to @line_item, notice: 'Line item was successfully updated.' }
@@ -65,8 +68,9 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to :back }
       format.json { head :no_content }
+      format.js {}
     end
   end
 

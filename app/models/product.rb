@@ -5,7 +5,7 @@ has_attached_file :image
 
 before_destroy :ensure_not_referenced_by_any_line_item
 
-validates :title, :description, presence: true
+validates :title, :description, :image, presence: true
 validates :price, numericality: {greater_than_or_equal_to: 0.01}
 validates :title, uniqueness: true
 validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
