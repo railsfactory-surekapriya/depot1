@@ -1,5 +1,6 @@
 ActiveAdmin.register Order do
 config.clear_action_items!
+config.per_page = 5
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #

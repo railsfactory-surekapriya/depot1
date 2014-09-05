@@ -12,7 +12,7 @@
 <body class="<%= controller.controller_name %>">
 
 <div id="banner">
-<%= image_tag("images.jpeg") %>
+<%= image_tag("index1.jpeg") %>
 <%= @page_title || t('.title') %>
 <%= form_tag store_path, class: 'locale' do %>
 <%= select_tag 'set_locale', options_for_select(LANGUAGES, I18n.locale.to_s), onchange: 'this.form.submit()' %>
@@ -24,7 +24,7 @@
     <header>
       <%= render 'layouts/navigation' %>
     </header>
-<main role="side"style=" height:1200px;width:200px;float:right;">
+<main role="side"style=" height:1200px;width:200px;float:left;">
 <% if @cart %>
 <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
 <%= render @cart %>

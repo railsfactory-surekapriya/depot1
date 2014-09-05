@@ -10,6 +10,19 @@ ActiveAdmin.register_page "Dashboard" do
       #end
     #end
 
+section " orders " do
+
+table_for LineItem.order("created_at desc").limit(8) do
+#if :order_id == NULL 
+      column :order_id 
+
+      column "created_at" 
+      column :product_id 
+     
+
+    end
+    strong { link_to "View All orders", admin_orders_path }
+  end
 
 
 section "Recent Products" do
@@ -21,7 +34,7 @@ section "Recent Products" do
 strong { link_to "View All Products", admin_products_path }
 end
 
-section " Recent Users" do
+section " Recent registered Users" do
 table_for User.order("created_at desc").limit(5) do
       column :name
       column :created_at
@@ -29,19 +42,6 @@ table_for User.order("created_at desc").limit(5) do
   strong { link_to "View All users", admin_users_path }  
   end
 
-section "Pending order" do
-
-table_for LineItem.order("created_at desc").limit(10) do
-#if :order_id == NULL 
-      column :order_id 
-
-      column "created_at" 
-      column :product_id 
-     
-
-    end
-    strong { link_to "View All orders", admin_orders_path }
-  end
 
 
 
