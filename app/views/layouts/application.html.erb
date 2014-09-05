@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><% content_for :title do %>My Title<% end %>
+<% content_for :description do %>My Description<% end %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Depot1" %>">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+<body class="<%= controller.controller_name %>">
+
+<div id="banner">
+<%= image_tag("images.jpeg") %>
+<%= @page_title || t('.title') %>
+<%= form_tag store_path, class: 'locale' do %>
+<%= select_tag 'set_locale', options_for_select(LANGUAGES, I18n.locale.to_s), onchange: 'this.form.submit()' %>
+<%= submit_tag 'submit' %>
+<%= javascript_tag "$('.locale input').hide()" %>
+<% end %>
+</div>
+  <body>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+<main role="side"style=" height:1200px;width:200px;float:right;">
+<% if @cart %>
+<%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+<%= render @cart %>
+<% end %>
+<% end %>
+</main>
+
+    <main role="main">
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </main>
+<footer>
+<%= render 'layouts/navigation_links' %>
+</footer>
+  </body>
+</html>

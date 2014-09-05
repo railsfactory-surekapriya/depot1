@@ -1,0 +1,19 @@
+<ul class="nav">
+  <li><%= link_to 'Home', store_path %></li>
+
+<% if user_signed_in? %>
+
+ 
+ <li><%= link_to "Profile", edit_user_registration_path %> </li>
+<li><%= link_to "History", '/history' %></li>
+<li style="float:right"><%= link_to 'signout',  destroy_user_session_path, :method => :delete %></li>
+<li style="float:right">Hi <%= current_user.email %>,not you?</li>
+
+
+<% else %>
+<li><%= link_to 'signin', new_user_session_path %></li>
+<li><%= link_to 'sign up!', new_user_registration_path %></li>
+
+<% end %>
+  <%= render 'layouts/navigation_links' %>
+</ul>
