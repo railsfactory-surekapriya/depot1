@@ -16,14 +16,12 @@ config.clear_action_items!
 
 
 index do
-=begin
-    column :title, :sortable => :title do |product|
-link_to product.title, [:edit_admin,product]
-=end
-    column :price
+    column :id
     column :quantity
     column :created_at
-    
-    
-  end
+    column :updated_at
+actions defaults: false do |line_item|
+link_to 'show' , admin_line_item_path(line_item)
+end
+end
 end

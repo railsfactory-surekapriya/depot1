@@ -7,17 +7,18 @@ config.clear_action_items!
   #
   # or
   #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if resource.something?
+   #permit_params do
+  #  permitted = [:permitted, :attributes]
+   #  permitted << :line_item if resource.something?
   #   permitted
   # end
 index do 
 column :name
 column :pay_type
 column :created_at
-column :price
-
+actions defaults: false do |order|
+link_to 'show' , admin_order_path(order)
+end
 
 end
 
